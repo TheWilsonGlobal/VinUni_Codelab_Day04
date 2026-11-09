@@ -28,5 +28,13 @@
    ```
 
 ## Lưu Ý
-- Code chạy ở chế độ **Mock Simulator** mặc định (không cần API key).
-- Nếu muốn thử Live API, đặt biến môi trường: `export GEMINI_API_KEY=your_key`
+- Code chạy ở chế độ **Mock Simulator** mặc định (không cần API key). Autograder luôn chạy ở chế độ này để kết quả ổn định.
+- Chạy với Gemini (function calling):
+  1. Tạo file `.env` ở thư mục gốc lab (cạnh `student_guide.md`), **không commit** file này:
+     ```
+     GEMINI_API_KEY=your_key
+     ```
+  2. Chạy: `LLM_MODE=gemini python3 template.py` (PowerShell: `$env:LLM_MODE="gemini"; python template.py`)
+  3. Đổi model (tùy chọn): biến `GEMINI_MODEL`, mặc định `gemini-3.5-flash-lite`.
+- Free tier của Gemini giới hạn khoảng 15 request/phút. Code tự thử lại khi gặp lỗi 429/503.
+- Kiểm thử với Gemini: `LLM_MODE=gemini python3 -m pytest ../autograder/test_agent.py -v`
